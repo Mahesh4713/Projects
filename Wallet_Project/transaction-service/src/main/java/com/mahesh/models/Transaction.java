@@ -1,38 +1,44 @@
-package com.mahesh.model;
+package com.mahesh.models;
+
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.context.annotation.EnableMBeanExport;
 
 import java.util.Date;
-
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Wallet {
+@Entity
+public class Transaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false,unique = true)
-    private String walletId;//phone number
+    private String externalId;
 
-    private long balance;
+    private String senderId;
 
-    private String currency;
+    private String receiverId;
 
+    private double amount;
+
+    private String reason;
+
+
+    @Enumerated(value = EnumType.STRING)
+    private TransactionStatus transactionStatus;
 
     @CreationTimestamp
     private Date createdOn;
 
-
     @UpdateTimestamp
-    private String updatedOn;
+    private Date updatedOn;
+
 
 
 }

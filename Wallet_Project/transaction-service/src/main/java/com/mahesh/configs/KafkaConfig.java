@@ -1,10 +1,8 @@
-package com.mahesh.config;
+package com.mahesh.configs;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +21,8 @@ public class KafkaConfig {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
         return new DefaultKafkaConsumerFactory(properties);
-
     }
+
     @Bean
     ProducerFactory getProducerFactory(){
 
@@ -35,7 +33,6 @@ public class KafkaConfig {
 
         return new DefaultKafkaProducerFactory(properties);
     }
-
 
     @Bean
     KafkaTemplate<String, String> getKafkaTemplate(){

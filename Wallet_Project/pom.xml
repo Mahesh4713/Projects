@@ -11,7 +11,8 @@
 	<groupId>com.mahesh</groupId>
 	<artifactId>Wallet_Project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Wallet_Project</name>
+    <packaging>pom</packaging>
+    <name>Wallet_Project</name>
 	<description>Wallet Project</description>
 	<url/>
 	<licenses>
@@ -20,7 +21,11 @@
 	<developers>
 		<developer/>
 	</developers>
-	<scm>
+    <modules>
+        <module>user-service</module>
+		<module>wallet-service</module>
+	</modules>
+    <scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
@@ -34,6 +39,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>

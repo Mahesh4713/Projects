@@ -54,7 +54,7 @@ public class WalletService {
 //
 @KafkaListener(topics = TRANSACTION_CREATED_TOPIC,groupId = "demowalletproject")
 public void updateWallets(String msg) throws ParseException, JsonProcessingException {
-    System.out.println("testing " + msg);
+    System.out.println("Wallet testing " + msg);
     JSONObject obj = (JSONObject) new JSONParser().parse(msg);
     String senderWalletId = (String) obj.get("senderId");
     String receiverWalletId = (String) obj.get("receiverId");
@@ -66,8 +66,9 @@ public void updateWallets(String msg) throws ParseException, JsonProcessingExcep
         Wallet receiverWallet = walletRepository.findByWalletId(receiverWalletId);
 
 
-        if (senderWallet == null || receiverWallet == null || senderWallet.getBalance() <= amount) {
-            obj = this.init(senderWalletId, receiverWalletId, transactionId, amount, "PENDING");
+        if (senderWallet == null || receiverWallet == null || senderWallet.getBalance() < amount) {
+            obj = this.init(senderWalletId, receiverWalletId, transactionId, amount, "FAILED");
+            obj.put("senderWalletBalance", senderWallet == null ? 0 : senderWallet.getBalance());
 
 //            obj =new JSONObject();
 //            obj.put("transactionId",transactionId);
@@ -77,6 +78,7 @@ public void updateWallets(String msg) throws ParseException, JsonProcessingExcep
 //            obj.put("senderWalletBalance",senderWallet==null ?0.:senderWallet.getWalletId());
 
             kafkaTemplate.send(WALLET_UPDATED_TOPIC, this.objectMapper.writeValueAsString(obj));
+            System.out.println("TESTING TRANSACTION"+ obj);
             return;
         }
 

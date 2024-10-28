@@ -55,6 +55,7 @@ public class TransactionService {
         kafkaTemplate.send(TRANSACTION_CREATED_TOPIC, objectMapper.writeValueAsString(obj));
 
 
+
         return transaction.getExternalId();
     }
 

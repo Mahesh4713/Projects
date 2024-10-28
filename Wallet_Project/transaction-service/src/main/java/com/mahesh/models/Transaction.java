@@ -25,7 +25,7 @@ public class Transaction {
 
     private String receiverId;
 
-    private double amount;
+    private long amount;
 
     private String reason;
 

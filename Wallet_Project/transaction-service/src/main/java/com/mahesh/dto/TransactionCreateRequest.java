@@ -18,7 +18,7 @@ public class TransactionCreateRequest {
     private String receiverId;
 
     @Min(1)
-    private double amount;
+    private long amount;
 
 
     private String reason;

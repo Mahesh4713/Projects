@@ -29,4 +29,15 @@ public class UserController {
         User user=userService.get(userId);
         return Utils.convertToUserResponse(user);
     }
+
+    @GetMapping("/user/phone/{phone}")
+    public GetUserResponse getUserByPhone(@PathVariable("phone") String phone) throws Exception {
+        User user=userService.getByPhone(phone);
+        return Utils.convertToUserResponse(user);
+    }
+
+//    @GetMapping("/user")
+//    public User getUser(@RequestParam String key, @RequestParam String value) throws Exception {
+//        return userService.find(key, value);
+//    }
 }

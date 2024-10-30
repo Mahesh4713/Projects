@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class UserService {
@@ -46,5 +48,22 @@ public class UserService {
                 user=userRepository.findById(userId).orElseThrow(Exception::new);
                 userCacheRepository.set(user);
                 return user;
+    }
+
+    public User find(String searchKey, String searchValue) throws Exception {
+        switch (searchKey){
+            case "phone":
+                return userRepository.findByPhone(searchValue);
+            case "email":
+                return userRepository.findByEmail(searchValue);
+            case "name":
+                return userRepository.findByName(searchValue);
+            default:
+                throw new Exception("Search key not valid " + searchKey);
+        }
+    }
+
+    public User getByPhone(String phone) {
+        return userRepository.findByPhone(phone);
     }
 }

@@ -19,7 +19,6 @@ public class EmailConfig {
     @Bean
     JavaMailSenderImpl getMailSender(){
         JavaMailSenderImpl javaMailSender=new JavaMailSenderImpl();
-
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setPort(587);
         javaMailSender.setUsername("maheshwalletproject@gmail.com");

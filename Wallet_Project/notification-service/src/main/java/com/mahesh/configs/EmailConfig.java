@@ -15,7 +15,6 @@ public class EmailConfig {
     SimpleMailMessage getMailMessage(){
         return new SimpleMailMessage();
     }
-
     @Bean
     JavaMailSenderImpl getMailSender(){
         JavaMailSenderImpl javaMailSender=new JavaMailSenderImpl();
